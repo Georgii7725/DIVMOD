@@ -17,7 +17,10 @@ def change_focus(window: Tk, en1: Entry, en2: Entry):
     en2.focus_set() if window.focus_get() == en1 else en1.focus_set()
 
 def calculate(operator: str, en1: Entry, en2: Entry):
-    en1 = int(en1.get())
-    en2 = int(en2.get())
-    if en2 == 0: showerror("Невозможная операция", f"Операция {operator} не определена по отношению к нулю")
-    else: showinfo("Результат", f"{en1} {operator} {en2} = {en1 % en2 if operator == 'MOD' else en1 // en2}" if en2 >= 0 else f"{en1} {operator} {en2} = {(-en1) % (-en2) if operator == 'MOD' else (-en1) // (-en2)}")
+    if en1.get() == "" or en2.get() == "":
+        showerror("Невозможная операция", "Вы не ввели число(-а)")
+    else:
+        en1 = int(en1.get())
+        en2 = int(en2.get())
+        if en2 == 0: showerror("Невозможная операция", f"Операция {operator} не определена по отношению к нулю")
+        else: showinfo("Результат", f"{en1} {operator} {en2} = {en1 % en2 if operator == 'MOD' else en1 // en2}" if en2 >= 0 else f"{en1} {operator} {en2} = {(-en1) % (-en2) if operator == 'MOD' else (-en1) // (-en2)}")
